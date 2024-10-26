@@ -9,7 +9,10 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-
+import { MyButton } from 'milibreria'
+import { MyFavourite } from 'milibreria'
+import { MyFavouriteBorder } from 'milibreria'
+import { CarlosAG } from 'milibreria'
 
 function Testimonio({ name, country, occupation, imageUrl, description }) {
   const [liked, setLiked] = useState(false)
@@ -21,40 +24,36 @@ function Testimonio({ name, country, occupation, imageUrl, description }) {
   }
 
 
-  return (
-      <Card sx={{ minWidth: 300, maxWidth: 700 }}>
-        <CardMedia
-          component="img"
-          alt={'User Profile Picture: ' + name}
-          image={imageUrl}
-        />
-        <CardContent>
-          <Typography align="center" variant="h4" component="div">
-            {name} de {country}
-          </Typography>
-          <Typography gutterBottom align="center" variant="h6" component="div">
-            {occupation}
-          </Typography>
-          <Typography variant="h7" sx={{ color: 'text.secondary' }}>
-            {description}
-          </Typography>
-        </CardContent>
-        <CardActions>
-            
-          {liked ?
-            <IconButton onClick={changeLiked} color="error">
-              <FavoriteIcon>
-                </FavoriteIcon>
-              </IconButton>
-            :
-            <IconButton onClick={changeLiked} color='error'>
-              <FavoriteBorderIcon>
-                </FavoriteBorderIcon>
-              </IconButton>
-          }
+  return (<>
+    <Card sx={{ minWidth: 300, maxWidth: 700 }}>
+      <CardMedia
+        component="img"
+        alt={'User Profile Picture: ' + name}
+        image={imageUrl}
+      />
+      <CardContent>
+        <Typography align="center" variant="h4" component="div">
+          {name} de {country}
+        </Typography>
+        <Typography gutterBottom align="center" variant="h6" component="div">
+          {occupation}
+        </Typography>
+        <Typography variant="h7" sx={{ color: 'text.secondary' }}>
+          {description}
+        </Typography>
+      </CardContent>
+      <CardActions>
 
-        </CardActions>
-      </Card>
+        {liked ?
+          <MyFavourite color='error' onClick={changeLiked}/>
+          
+          :
+          <MyFavouriteBorder color='error' onClick={changeLiked}/>
+        }
+
+      </CardActions>
+    </Card>
+  </>
   )
 }
 
